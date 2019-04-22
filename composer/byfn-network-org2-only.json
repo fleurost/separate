@@ -1,0 +1,91 @@
+{
+    "name": "byfn-network",
+    "x-type": "hlfv1",
+    "version": "1.0.0",
+	"client": {
+		"organization": "Org2",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "2100",
+					"eventHub": "2100",
+					"eventReg": "2100"
+				},
+				"orderer": "2100"
+			}
+		}
+	},
+    "channels": {
+        "composerchannel2": {
+            "orderers": [
+                "orderer.aryastorage.com"
+            ],
+            "peers": {
+                "peer0.org2.aryastorage.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "eventSource": true
+                },
+                "peer1.org2.aryastorage.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "eventSource": true
+                }
+            }
+        }
+    },
+    "organizations": {
+        "Org2": {
+            "mspid": "Org2MSP",
+            "peers": [
+                "peer0.org2.aryastorage.com",
+                "peer1.org2.aryastorage.com"
+            ],
+            "certificateAuthorities": [
+                "ca.org2.aryastorage.com"
+            ]
+        }
+    },
+    "orderers": {
+        "orderer.aryastorage.com": {
+            "url": "grpcs://192.168.56.107:7050",
+            "grpcOptions": {
+                "ssl-target-name-override": "orderer.aryastorage.com"
+            },
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICRDCCAeugAwIBAgIQDI1i93dDNTfF0+lIHVPhLDAKBggqhkjOPQQDAjB0MQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEYMBYGA1UEChMPYXJ5YXN0b3JhZ2UuY29tMR4wHAYDVQQDExV0bHNj\nYS5hcnlhc3RvcmFnZS5jb20wHhcNMTkwMTMxMTE1OTI1WhcNMjkwMTI4MTE1OTI1\nWjB0MQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMN\nU2FuIEZyYW5jaXNjbzEYMBYGA1UEChMPYXJ5YXN0b3JhZ2UuY29tMR4wHAYDVQQD\nExV0bHNjYS5hcnlhc3RvcmFnZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNC\nAARePArkTC30tPWJeuFxOtciClU/Tghc84NIRc171XHS2900+k8fLs8C9Qpf19zE\nEfOUFxHGoT2FhAPaPVQBbMMwo18wXTAOBgNVHQ8BAf8EBAMCAaYwDwYDVR0lBAgw\nBgYEVR0lADAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCDQBdY3QLeyEyh6t+Eg\nGC2YAkSyK586m3D/X2Gf+OyG9zAKBggqhkjOPQQDAgNHADBEAiB/csdUKTUcgFwt\nq+imzDeSuFmvu6c4nDxfnXx3uCiOCQIgHWR0zKvVHLSt28ma3KzUUSBSDGuL/d4T\niZK88jAciZ4=\n-----END CERTIFICATE-----\n"
+            }
+        }
+    },
+    "peers": {
+        "peer0.org2.aryastorage.com": {
+            "url": "grpcs://192.168.56.109:9051",
+						"eventUrl": "grpc://192.168.56.109:9053",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.org2.aryastorage.com"
+            },
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICWTCCAf+gAwIBAgIQXkvAewhDrOQhsMQFnFYnkTAKBggqhkjOPQQDAjB+MQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEdMBsGA1UEChMUb3JnMi5hcnlhc3RvcmFnZS5jb20xIzAhBgNVBAMT\nGnRsc2NhLm9yZzIuYXJ5YXN0b3JhZ2UuY29tMB4XDTE5MDEzMTExNTkyNVoXDTI5\nMDEyODExNTkyNVowfjELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWEx\nFjAUBgNVBAcTDVNhbiBGcmFuY2lzY28xHTAbBgNVBAoTFG9yZzIuYXJ5YXN0b3Jh\nZ2UuY29tMSMwIQYDVQQDExp0bHNjYS5vcmcyLmFyeWFzdG9yYWdlLmNvbTBZMBMG\nByqGSM49AgEGCCqGSM49AwEHA0IABBZX5REIB5hX0VfvCHu3K55ta+AJqxHyoU3X\nBBJlUg15T17PGZ2FQACUEeymOYhjOsFkxWKUpji4PuUCbpDKs96jXzBdMA4GA1Ud\nDwEB/wQEAwIBpjAPBgNVHSUECDAGBgRVHSUAMA8GA1UdEwEB/wQFMAMBAf8wKQYD\nVR0OBCIEICFg++9azfha84gAl2TWgR7u9XDdhUR3ztz0n58HQItgMAoGCCqGSM49\nBAMCA0gAMEUCIQCK4Hxi4npBhT5uTrWIWRI88meq280iUMiuMs/7QwV1oAIgSWDb\nvGmDkldB62d3Mt4DQM8EdQoRUqOQSgDykZHbC+Y=\n-----END CERTIFICATE-----\n"
+            }
+        },
+        "peer1.org2.aryastorage.com": {
+            "url": "grpcs://192.168.56.109:10051",
+						"eventUrl": "grpc://192.168.56.109:10053",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.org2.aryastorage.com"
+            },
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICWTCCAf+gAwIBAgIQXkvAewhDrOQhsMQFnFYnkTAKBggqhkjOPQQDAjB+MQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEdMBsGA1UEChMUb3JnMi5hcnlhc3RvcmFnZS5jb20xIzAhBgNVBAMT\nGnRsc2NhLm9yZzIuYXJ5YXN0b3JhZ2UuY29tMB4XDTE5MDEzMTExNTkyNVoXDTI5\nMDEyODExNTkyNVowfjELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWEx\nFjAUBgNVBAcTDVNhbiBGcmFuY2lzY28xHTAbBgNVBAoTFG9yZzIuYXJ5YXN0b3Jh\nZ2UuY29tMSMwIQYDVQQDExp0bHNjYS5vcmcyLmFyeWFzdG9yYWdlLmNvbTBZMBMG\nByqGSM49AgEGCCqGSM49AwEHA0IABBZX5REIB5hX0VfvCHu3K55ta+AJqxHyoU3X\nBBJlUg15T17PGZ2FQACUEeymOYhjOsFkxWKUpji4PuUCbpDKs96jXzBdMA4GA1Ud\nDwEB/wQEAwIBpjAPBgNVHSUECDAGBgRVHSUAMA8GA1UdEwEB/wQFMAMBAf8wKQYD\nVR0OBCIEICFg++9azfha84gAl2TWgR7u9XDdhUR3ztz0n58HQItgMAoGCCqGSM49\nBAMCA0gAMEUCIQCK4Hxi4npBhT5uTrWIWRI88meq280iUMiuMs/7QwV1oAIgSWDb\nvGmDkldB62d3Mt4DQM8EdQoRUqOQSgDykZHbC+Y=\n-----END CERTIFICATE-----\n"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca.org2.aryastorage.com": {
+            "url": "https://192.168.56.109:8054",
+            "caName": "ca-org2",
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}
