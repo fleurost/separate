@@ -68,7 +68,7 @@
     },
     "orderers": {
         "orderer.hospital.com": {
-            "url": "grpcs://192.168.56.107:7050",
+            "url": "grpcs://192.168.71.12:7050",
             "grpcOptions": {
                 "ssl-target-name-override": "orderer.hospital.com"
             },
@@ -79,8 +79,8 @@
     },
     "peers": {
         "peer0.rs1.hospital.com": {
-            "url": "grpcs://192.168.56.108:7051",
-						"eventUrl": "grpc://192.168.56.108:7053",
+            "url": "grpcs://192.168.71.10:7051",
+						"eventUrl": "grpc://192.168.71.10:7053",
             "grpcOptions": {
                 "ssl-target-name-override": "peer0.rs1.hospital.com"
             },
@@ -89,8 +89,8 @@
             }
         },
         "peer1.rs1.hospital.com": {
-            "url": "grpcs://192.168.56.108:8051",
-						"eventUrl": "grpc://192.168.56.108:8053",
+            "url": "grpcs://192.168.71.10:8051",
+						"eventUrl": "grpc://192.168.71.10:8053",
             "grpcOptions": {
                 "ssl-target-name-override": "peer1.rs1.hospital.com"
             },
@@ -99,8 +99,8 @@
             }
         },
         "peer0.rs2.hospital.com": {
-            "url": "grpcs://192.168.56.109:9051",
-						"eventUrl": "grpc://192.168.56.109:9053",
+            "url": "grpcs://192.168.71.11:9051",
+						"eventUrl": "grpc://192.168.71.11:9053",
             "grpcOptions": {
                 "ssl-target-name-override": "peer0.rs2.hospital.com"
             },
@@ -109,8 +109,8 @@
             }
         },
         "peer1.rs2.hospital.com": {
-            "url": "grpcs://192.168.56.109:10051",
-						"eventUrl": "grpc://192.168.56.109:10053",
+            "url": "grpcs://192.168.71.11:10051",
+						"eventUrl": "grpc://192.168.71.11:10053",
             "grpcOptions": {
                 "ssl-target-name-override": "peer1.rs2.hospital.com"
             },
@@ -121,14 +121,14 @@
     },
     "certificateAuthorities": {
         "ca.rs1.hospital.com": {
-            "url": "https://192.168.56.108:7054",
+            "url": "https://192.168.71.10:7054",
             "caName": "ca-rs1",
             "httpOptions": {
                 "verify": false
             }
         },
         "ca.rs2.hospital.com": {
-            "url": "https://192.168.56.109:8054",
+            "url": "https://192.168.71.11:8054",
             "caName": "ca-rs2",
             "httpOptions": {
                 "verify": false

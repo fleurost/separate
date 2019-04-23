@@ -33,10 +33,10 @@ services:
       - ../crypto-config/ordererOrganizations/hospital.com/msp/tlscacerts:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/hospital.com/msp/tlscacerts
       - peer0.rs2.hospital.com:/var/hyperledger/production
     extra_hosts:
-      - "peer0.rs1.hospital.com:192.168.56.108"
-      - "peer1.rs1.hospital.com:192.168.56.108"
-      - "ca_peerrs1:192.168.56.108"
-      - "orderer.hospital.com:192.168.56.107"
+      - "peer0.rs1.hospital.com:192.168.71.10"
+      - "peer1.rs1.hospital.com:192.168.71.10"
+      - "ca_peerrs1:192.168.71.10"
+      - "orderer.hospital.com:192.168.71.12"
     ports:
       - 9051:7051
       - 9053:7053
@@ -73,10 +73,10 @@ services:
         - ../crypto-config/ordererOrganizations/hospital.com/msp/tlscacerts:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/hospital.com/msp/tlscacerts
         - peer1.rs2.hospital.com:/var/hyperledger/production
     extra_hosts:
-      - "peer0.rs1.hospital.com:192.168.56.108"
-      - "peer1.rs1.hospital.com:192.168.56.108"
-      - "ca_peerrs1:192.168.56.108"
-      - "orderer.hospital.com:192.168.56.107"
+      - "peer0.rs1.hospital.com:192.168.71.10"
+      - "peer1.rs1.hospital.com:192.168.71.10"
+      - "ca_peerrs1:192.168.71.10"
+      - "orderer.hospital.com:192.168.71.12"
     ports:
       - 10051:7051
       - 10053:7053

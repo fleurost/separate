@@ -4,12 +4,12 @@ if [ -z ${1} ]; then
 fi
 
 VERSION=$1
-ORDERER_HOST=192.168.56.107
-RS1_HOST=192.168.56.108
-RS2_HOST=192.168.56.109
+ORDERER_HOST=192.168.71.12
+RS1_HOST=192.168.71.10
+RS2_HOST=192.168.71.11
 
-composer card delete -c PeerAdmin@byfn-network-rs1
-composer card delete -c PeerAdmin@byfn-network-rs2
+composer card delete -c PeerAdmin@byfn-network-org2
+composer card delete -c PeerAdmin@byfn-network-org1
 composer card delete -c bob@jaringan-rumahsakit
 composer card delete -c alice@jaringan-rumahsakit
 
@@ -27,7 +27,7 @@ echo "INSERT_ORDERER_CA_CERT: "
 awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}' crypto-config/ordererOrganizations/hospital.com/orderers/orderer.hospital.com/tls/ca.crt > ./tmp/INSERT_ORDERER_CA_CERT
 
 
-cat << EOF > ./byfn-network-rs1.json
+cat << EOF > ./byfn-network-org1.json
 {
     "name": "byfn-network-rs1",
     "x-type": "hlfv1",
@@ -165,7 +165,7 @@ cat << EOF > ./byfn-network-rs1.json
 EOF
 
 
-cat << EOF > ./byfn-network-rs2.json
+cat << EOF > ./byfn-network-org2.json
 {
     "name": "byfn-network-rs2",
     "x-type": "hlfv1",
@@ -305,24 +305,24 @@ EOF
 rs1ADMIN="./crypto-config/peerOrganizations/rs1.hospital.com/users/Admin@rs1.hospital.com/msp"
 rs2ADMIN="./crypto-config/peerOrganizations/rs2.hospital.com/users/Admin@rs2.hospital.com/msp"
 
-composer card create -p ./byfn-network-rs1.json -u PeerAdmin -c $rs1ADMIN/signcerts/A*.pem -k $rs1ADMIN/keystore/*_sk -r PeerAdmin -r ChannelAdmin -f PeerAdmin@byfn-network-rs1.card
-composer card create -p ./byfn-network-rs2.json -u PeerAdmin -c $rs2ADMIN/signcerts/A*.pem -k $rs2ADMIN/keystore/*_sk -r PeerAdmin -r ChannelAdmin -f PeerAdmin@byfn-network-rs2.card
+composer card create -p ./byfn-network-org1.json -u PeerAdmin -c $rs1ADMIN/signcerts/A*.pem -k $rs1ADMIN/keystore/*_sk -r PeerAdmin -r ChannelAdmin -f PeerAdmin@byfn-network-org1.card
+composer card create -p ./byfn-network-org2.json -u PeerAdmin -c $rs2ADMIN/signcerts/A*.pem -k $rs2ADMIN/keystore/*_sk -r PeerAdmin -r ChannelAdmin -f PeerAdmin@byfn-network-org2.card
 
-composer card import -f PeerAdmin@byfn-network-rs1.card --card PeerAdmin@byfn-network-rs1
-composer card import -f PeerAdmin@byfn-network-rs2.card --card PeerAdmin@byfn-network-rs2
+composer card import -f PeerAdmin@byfn-network-org1.card --card PeerAdmin@byfn-network-org1
+composer card import -f PeerAdmin@byfn-network-org2.card --card PeerAdmin@byfn-network-org2
 
-composer network install --card PeerAdmin@byfn-network-rs1 --archiveFile jaringan-rumahsakit@$VERSION.bna
-composer network install --card PeerAdmin@byfn-network-rs2 --archiveFile jaringan-rumahsakit@$VERSION.bna
+composer network install --card PeerAdmin@byfn-network-org1 --archiveFile jaringan-rumahsakit@$VERSION.bna
+composer network install --card PeerAdmin@byfn-network-org2 --archiveFile jaringan-rumahsakit@$VERSION.bna
 
-composer identity request -c PeerAdmin@byfn-network-rs1 -u admin -s adminpw -d alice
-composer identity request -c PeerAdmin@byfn-network-rs2 -u admin -s adminpw -d bob
+composer identity request -c PeerAdmin@byfn-network-org1 -u admin -s adminpw -d alice
+composer identity request -c PeerAdmin@byfn-network-org2 -u admin -s adminpw -d bob
 
-composer network start -c PeerAdmin@byfn-network-rs1 -n jaringan-rumahsakit -V $VERSION -o endorsementPolicyFile=./endorsement-policy.json -A alice -C alice/admin-pub.pem -A bob -C bob/admin-pub.pem
+composer network start -c PeerAdmin@byfn-network-org1 -n jaringan-rumahsakit -V $VERSION -o endorsementPolicyFile=./endorsement-policy.json -A alice -C alice/admin-pub.pem -A bob -C bob/admin-pub.pem
 
 # create card for alice, as business network admin
-composer card create -p ./byfn-network-rs1.json -u alice -n jaringan-rumahsakit -c alice/admin-pub.pem -k alice/admin-priv.pem
+composer card create -p ./byfn-network-org1.json -u alice -n jaringan-rumahsakit -c alice/admin-pub.pem -k alice/admin-priv.pem
 composer card import -f alice@jaringan-rumahsakit.card
 
 # create card for bob, as business network admin
-composer card create -p ./byfn-network-rs2.json -u bob -n jaringan-rumahsakit -c bob/admin-pub.pem -k bob/admin-priv.pem
+composer card create -p ./byfn-network-org2.json -u bob -n jaringan-rumahsakit -c bob/admin-pub.pem -k bob/admin-priv.pem
 composer card import -f bob@jaringan-rumahsakit.card
