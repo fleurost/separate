@@ -16,7 +16,7 @@ services:
       - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/d39cae8dd11619c6f39bedef7391150e1b6ce31fecc30b654e59c39f87136946_sk
     ports:
       - "8054:7054"
-    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.rs2.hospital.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/d39cae8dd11619c6f39bedef7391150e1b6ce31fecc30b654e59c39f87136946_sk -b admin:adminpw -d'
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.rs2.hospital.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/3abd002132b7d2f723290fed5f77c5c24a017147fe901a09938dd39b8ddd3cb0_sk -b admin:adminpw -d'
     volumes:
       - ./crypto-config/peerOrganizations/rs2.hospital.com/ca/:/etc/hyperledger/fabric-ca-server-config
     container_name: ca_peerrs2
