@@ -4,9 +4,9 @@ if [ -z ${1} ]; then
 fi
 
 VERSION=$1
-ORDERER_HOST=192.168.71.12
-RS1_HOST=192.168.71.10
-RS2_HOST=192.168.71.11
+ORDERER_HOST=192.168.56.12
+RS1_HOST=192.168.56.10
+RS2_HOST=192.168.56.11
 
 composer card delete -c PeerAdmin@byfn-network-org2
 composer card delete -c PeerAdmin@byfn-network-org1
@@ -46,7 +46,7 @@ cat << EOF > ./byfn-network-org1.json
 		}
 	},
     "channels": {
-        "composerchannel": {
+        "rschannel": {
             "orderers": [
                 "orderer.hospital.com"
             ],
@@ -184,7 +184,7 @@ cat << EOF > ./byfn-network-org2.json
 		}
 	},
     "channels": {
-        "composerchannel": {
+        "rschannel": {
             "orderers": [
                 "orderer.hospital.com"
             ],

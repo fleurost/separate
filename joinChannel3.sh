@@ -1,8 +1,8 @@
 
 # Join peer0.rs2.hospital.com to the channel.
-docker exec peer0.rs2.hospital.com peer channel fetch config -o orderer.hospital.com:7050 -c composerchannel --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/hospital.com/msp/tlscacerts/tlsca.hospital.com-cert.pem
-docker exec peer0.rs2.hospital.com peer channel join -b composerchannel_config.block
+docker exec peer0.rs2.hospital.com peer channel fetch config -o orderer.hospital.com:7050 -c rschannel --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/hospital.com/msp/tlscacerts/tlsca.hospital.com-cert.pem
+docker exec peer0.rs2.hospital.com peer channel join -b rschannel_config.block
 
 # Join peer1.rs2.hospital.com to the channel.
-docker exec peer1.rs2.hospital.com peer channel fetch config -o orderer.hospital.com:7050 -c composerchannel --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/hospital.com/msp/tlscacerts/tlsca.hospital.com-cert.pem
-docker exec peer1.rs2.hospital.com peer channel join -b composerchannel_config.block
+docker exec peer1.rs2.hospital.com peer channel fetch config -o orderer.hospital.com:7050 -c rschannel --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/hospital.com/msp/tlscacerts/tlsca.hospital.com-cert.pem
+docker exec peer1.rs2.hospital.com peer channel join -b rschannel_config.block
